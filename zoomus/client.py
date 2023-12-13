@@ -36,6 +36,9 @@ COMPONENT_CLASSES = {
         "room": components.room.RoomComponentV2,
         "user": components.user.UserComponentV2,
         "webinar": components.webinar.WebinarComponentV2,
+        "past_webinar": components.past_webinar.PastWebinarComponentV2,
+        "webinar_poll": components.poll.WebinarPollComponentV2,
+        "meeting_poll": components.poll.MeetingsPollComponentV2,
     },
 }
 
@@ -235,3 +238,18 @@ class ZoomClient(util.ApiClient):
     def role(self):
         """Get the role component"""
         return self.components.get("role")
+
+    @property
+    def past_webinar(self):
+        """Get the past webinar component"""
+        return self.components.get("past_webinar")
+
+    @property
+    def webinar_poll(self):
+        """Get the webinar poll component"""
+        return self.components.get("webinar_poll")
+
+    @property
+    def meeting_poll(self):
+        """Get the meeting poll component"""
+        return self.components.get("meeting_poll")

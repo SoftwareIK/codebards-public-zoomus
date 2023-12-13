@@ -16,4 +16,6 @@ from . import (
     room,
     user,
     webinar,
+    past_webinar,
+    poll,
 )
