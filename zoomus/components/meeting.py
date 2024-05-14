@@ -102,3 +102,24 @@ class MeetingComponentV2(base.BaseComponent):
         return self.get_request(
             "/metrics/meetings/{}/participants".format(kwargs.get("id")), params=kwargs
         )
+
+    def update_occurrence(self, **kwargs):
+        util.require_keys(kwargs, "id")
+        util.require_keys(kwargs, "occurrence_id")
+        if kwargs.get("start_time"):
+            kwargs["start_time"] = util.date_to_str(kwargs["start_time"])
+        return self.patch_request(
+            "/meetings/{}?occurrence_id={}".format(
+                kwargs.get("id"), kwargs.get("occurrence_id")
+            ),
+            data=kwargs,
+        )
+    
+    def delete_occurrence(self, **kwargs):
+        util.require_keys(kwargs, "id")
+        util.require_keys(kwargs, "occurrence_id")
+        return self.delete_request(
+            "/meetings/{}?occurrence_id={}".format(
+                kwargs.get("id"), kwargs.get("occurrence_id")
+            ),
+        )
